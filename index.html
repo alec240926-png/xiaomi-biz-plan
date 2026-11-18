@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小米的商业计划书</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+  /* 设计计划：文档型商业计划书 —— 纸面报告质感；light 为底，深青蓝标题带 + 冰蓝 accent；暗色为同色相加深，非反色 */
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1e293b;
+    --ink-soft: #475569;
+    --ink-faint: #94a3b8;
+    --line: #e2e8f0;
+    --accent: #0369a1;
+    --accent-bg: #e0f2fe;
+    --accent-border: #0284c7;
+    --warn: #b91c1c;
+    --warn-bg: #fef2f2;
+    --ok: #047857;
+    --ok-bg: #ecfdf5;
+    --th-bg: #f1f5f9;
+    --zebra: #fafbfd;
+    --panel: #f1f5f9;
+    --header-1: #0f172a;
+    --header-2: #1e3a5f;
+    --header-meta: #93c5fd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1420;
+      --card: #141e2c;
+      --ink: #e2e8f0;
+      --ink-soft: #aebacb;
+      --ink-faint: #7686a0;
+      --line: #273346;
+      --accent: #38bdf8;
+      --accent-bg: rgba(56, 189, 248, 0.10);
+      --accent-border: #0ea5e9;
+      --warn: #fca5a5;
+      --warn-bg: rgba(248, 113, 113, 0.10);
+      --ok: #6ee7b7;
+      --ok-bg: rgba(52, 211, 153, 0.10);
+      --th-bg: #1a2434;
+      --zebra: rgba(255, 255, 255, 0.02);
+      --panel: #1a2434;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1420;
+    --card: #141e2c;
+    --ink: #e2e8f0;
+    --ink-soft: #aebacb;
+    --ink-faint: #7686a0;
+    --line: #273346;
+    --accent: #38bdf8;
+    --accent-bg: rgba(56, 189, 248, 0.10);
+    --accent-border: #0ea5e9;
+    --warn: #fca5a5;
+    --warn-bg: rgba(248, 113, 113, 0.10);
+    --ok: #6ee7b7;
+    --ok-bg: rgba(52, 211, 153, 0.10);
+    --th-bg: #1a2434;
+    --zebra: rgba(255, 255, 255, 0.02);
+    --panel: #1a2434;
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .site-header {
+    background: linear-gradient(135deg, var(--header-1) 0%, var(--header-2) 100%);
+    color: #fff;
+    padding-block: 48px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .site-header h1 {
+    font-family: "Noto Serif SC", "PingFang SC", serif;
+    font-size: 28px;
+    letter-spacing: 1px;
+    text-wrap: balance;
+    max-width: 1132px;
+    margin: 0 auto;
+  }
+  .site-header .meta {
+    color: var(--header-meta);
+    margin-top: 10px;
+    font-size: 14px;
+    max-width: 1132px;
+    margin-inline: auto;
+  }
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    display: flex;
+    gap: 32px;
+    padding-block: 32px 80px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    align-items: flex-start;
+  }
+  nav.toc {
+    position: sticky;
+    top: 24px;
+    flex: 0 0 220px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 16px;
+    font-size: 13.5px;
+  }
+  nav.toc .toc-title { font-weight: 700; color: var(--ink-faint); font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
+  nav.toc a { display: block; color: var(--ink-soft); text-decoration: none; padding: 5px 8px; border-radius: 6px; }
+  nav.toc a:hover { background: var(--accent-bg); color: var(--accent); }
+  nav.toc a:focus-visible, a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  main { flex: 1; min-width: 0; }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-family: "Noto Serif SC", "PingFang SC", serif;
+    font-size: 21px;
+    margin-bottom: 6px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h2 .no { color: var(--accent); margin-right: 8px; }
+  h3 {
+    font-size: 16.5px;
+    margin: 26px 0 10px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent-border);
+    text-wrap: balance;
+  }
+  p { margin: 10px 0; }
+  ul, ol { margin: 10px 0 10px 22px; }
+  li { margin: 4px 0; }
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--th-bg); font-weight: 600; white-space: nowrap; }
+  tr:nth-child(even) td { background: var(--zebra); }
+  .callout {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--accent-border);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .callout.warn { background: var(--warn-bg); border-left-color: var(--warn); }
+  .callout.ok { background: var(--ok-bg); border-left-color: var(--ok); }
+  .callout .label { font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+  .callout.warn .label { color: var(--warn); }
+  .callout.ok .label { color: var(--ok); }
+  .formula {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    text-align: center;
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 8px;
+    border-radius: 99px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .tag.red { background: var(--warn-bg); color: var(--warn); }
+  .muted { color: var(--ink-faint); font-size: 13px; }
+  .lead { font-size: 16px; font-weight: 600; }
+  strong.hl { color: var(--accent); }
+  .foot {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    padding-block: 20px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (max-width: 900px) {
+    .layout { flex-direction: column; }
+    nav.toc { position: static; flex: none; width: 100%; box-sizing: border-box; }
+    section { padding: 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+  }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .site-header { background: #fff; color: #1e293b; padding-block: 20px; border-bottom: 3px solid #0f172a; }
+    nav.toc, .site-header .meta { display: none; }
+    .layout { display: block; padding: 0; }
+    section { border: none; border-bottom: 1px solid #ccc; border-radius: 0; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>⛷️ 小米的商业计划书</h1>
+  <div class="meta">版本 v3 · 2026 年 11 月 · 路线：VIP 俱乐部 · 约束：每周 10 小时 · 原则：动结构，不加时间</div>
+</header>
+
+<div class="layout">
+
+<nav class="toc">
+  <div class="toc-title">目录</div>
+  <a href="#summary">核心结论</a>
+  <a href="#club">一、长期：VIP 俱乐部</a>
+  <a href="#video">二、中短期：视频 + 商单</a>
+  <a href="#finance">三、财务推演（保守）</a>
+  <a href="#redlines">四、红线与节奏</a>
+  <a href="#methodology">附录 · 方法论</a>
+</nav>
+
+<main>
+
+<!-- ============ 核心结论 ============ -->
+<section id="summary">
+  <h2><span class="no">§</span>核心结论</h2>
+  <p class="lead">目标：从"卖时间的手艺人"进化为"小而美的教学品牌经营者"——收入从约 30 万走向 100 万+，而教学时间占比持续下降。</p>
+
+  <h3>要做的四件事</h3>
+  <table>
+    <tr><th>主线</th><th>关键动作</th><th>预期贡献</th></tr>
+    <tr>
+      <td><strong>① 核心业务升级</strong><br>VIP 俱乐部</td>
+      <td>会员重定价（3 万起）、课次加闸、名额上限 20–30 人 + waitlist、服务仪式化（年度评估报告 / AI 复盘）</td>
+      <td>基本盘：<br>30 → 50–60 万</td>
+    </tr>
+    <tr>
+      <td><strong>② 松花湖营期产品化</strong></td>
+      <td>每年 2 期对外短训营（6–10 人 × 5–8k），漏斗上层，营员筛会员</td>
+      <td>第 1 年<br>5–10 万</td>
+    </tr>
+    <tr>
+      <td><strong>③ 视频内容 + 商单</strong></td>
+      <td>一个 IP 全网分发，AI 流水线生产；每周 10 小时；北极星指标 = 月加微 40；商单从置换升级到年框</td>
+      <td>第 1 年<br>15–25 万</td>
+    </tr>
+    <tr>
+      <td><strong>④ AI 工具产品化</strong><br>（第 2 年启动）</td>
+      <td>C 端动作分析报告（49–99 元）起步，数据起量后自然溢出 B 端；始终轻资产</td>
+      <td>第 3 年起<br>每年 10 万+</td>
+    </tr>
+  </table>
+
+  <h3>收入演进</h3>
+  <table>
+    <tr><th>时点</th><th>年收入（保守口径）</th><th>关键变化</th></tr>
+    <tr><td>现状</td><td>~30 万</td><td>时间已满，体力封顶</td></tr>
+    <tr><td>第 1 年</td><td>45–55 万</td><td>VIP 会员涨价 + 内容线起量 + 松花湖营</td></tr>
+    <tr><td>第 3 年</td><td>75–95 万</td><td>+ C 端工具、商单合约化、助教梯队</td></tr>
+    <tr><td>第 5 年+</td><td>100 万+</td><td>转向经营者/教育者；教学时间占比持续下降</td></tr>
+  </table>
+
+  <div class="callout">
+    <div class="label">三条原则</div>
+    <strong>轻资产</strong>（无硬件、无销售团队、近零固定成本）· <strong>动结构，不加时间</strong>（涨价、1 对多、产品化，而非多上课）· <strong>每周 10 小时红线</strong>（内容 + 商单线的人力上限，超了就砍渠道）
+  </div>
+  <p class="muted">所有数字为基于明确假设的算术推演，非市场预测；敏感变量：会员数、客单价、营期数、月加微数。每月对照本表复盘，假设错了就改。</p>
+</section>
+
+<!-- ============ 一、长期：VIP 俱乐部 ============ -->
+<section id="club">
+  <h2><span class="no">一、</span>长期规划：VIP 俱乐部</h2>
+
+  <h3>1.1 形态定义</h3>
+  <p><strong>上限 20–30 人的高端滑雪俱乐部，近零固定成本，阶梯产品：</strong></p>
+  <div class="formula">入门测评/体验课（钩子） → 年度 VIP 会员（3 万起，课次有闸，含 AI 复盘/年度计划） → 核心 VIP（1–2 个名额，陪赛陪滑，价格随行就市）</div>
+  <ul>
+    <li>waitlist 常态化：排队也给糖（免费公开课、AI 诊断体验），排队本身是营销资产</li>
+    <li>松花湖短训营对外招生 = 俱乐部漏斗上层，营员筛会员</li>
+  </ul>
+
+  <h3>1.2 五年发展曲线</h3>
+  <table>
+    <tr><th>阶段</th><th>规模</th><th>关键动作</th></tr>
+    <tr><td>第 1 年</td><td>12–15 人</td><td>涨价过渡（老会员老价）、课次加闸、服务仪式化（年度评估报告、等级徽章）</td></tr>
+    <tr><td>第 2–3 年</td><td>20 人封顶</td><td>waitlist 运营、助教 1–2 人（兼职教练，你培训+抽成）、松花湖营 2 期/年</td></tr>
+    <tr><td>第 4–5 年</td><td>20 人 + 助教交付</td><td>教学法成册，"教教练"模块启动</td></tr>
+    <tr><td>第 5 年+</td><td>品牌 &gt; 个人</td><td>俱乐部成为滑雪教学领域的品牌；时间在教学中的占比持续下降</td></tr>
+  </table>
+
+  <h3>1.3 年度商业节奏（上海 9 个月 + 松花湖 3 个月）</h3>
+  <table>
+    <tr><th>时段</th><th>地点</th><th>业务角色</th></tr>
+    <tr><td>9–12 月</td><td>上海室内</td><td>招新季 + 基础高频训练（现金流基本盘）</td></tr>
+    <tr><td>12–3 月</td><td>松花湖</td><td>实战交付 + 短训营 + 比赛 + 内容高峰</td></tr>
+    <tr><td>3–6 月</td><td>回上海</td><td>复盘续费 + 工具迭代 + 老会员深度服务</td></tr>
+  </table>
+  <ul>
+    <li><strong>外地/南方学员</strong>：无法常驻上海 → 远程 AI 诊断 + 松花湖短训营组合</li>
+    <li><strong>内容蓝海</strong>：市面滑雪内容 90% 是户外大山，"城市室内雪场练刻滑"差异化显著</li>
+  </ul>
+
+  <h3>1.4 两个系统性风险（提前埋解法）</h3>
+  <table>
+    <tr><th>风险</th><th>解法</th></tr>
+    <tr><td><span class="tag red">单点故障</span>交付 100% 绑定个人，一次伤病即系统性风险</td><td>教学法文档化、数字分身 24h 答基础答疑、助教梯队</td></tr>
+    <tr><td><span class="tag red">涨价感知</span>VIP 服务卖的一半是"被认真对待的感觉"</td><td>年度报告、进步可视化（AI 前后对比）、开营结营仪式</td></tr>
+  </table>
+  <div class="callout ok">
+    <div class="label">俱乐部线收入轨迹</div>
+    30 → 50–60 → 80–100 万（不含商单与工具收入）
+  </div>
+</section>
+
+<!-- ============ 二、中短期：视频 + 商单 ============ -->
+<section id="video">
+  <h2><span class="no">二、</span>中短期方案：视频内容 + 商单</h2>
+
+  <h3>2.1 总策略</h3>
+  <p class="lead">一个 IP，全网分发，一鱼多吃。不做矩阵号——VIP 俱乐部品牌需要一个强人设。</p>
+
+  <h3>2.2 渠道矩阵（国内 + 海外）</h3>
+  <table>
+    <tr><th>渠道</th><th>角色</th><th>形态/频率</th></tr>
+    <tr><td><strong>小红书</strong></td><td>高客单转化主阵地（付费能力强、搜索心智）</td><td>图文+短视频，日更</td></tr>
+    <tr><td><strong>抖音</strong></td><td>流量 + 直播主阵地</td><td>竖屏短视频，日更；每周 1 次直播</td></tr>
+    <tr><td>视频号</td><td>私域联动、中年高净值</td><td>同步分发 + 直播</td></tr>
+    <tr><td>B 站</td><td>深度技术、程序员/科技人群</td><td>横屏长视频，周更 1 条（可砍）</td></tr>
+    <tr><td><strong>YouTube</strong></td><td>海外主阵地：中文盘 + 英文盘双轨</td><td>长视频 + Shorts，周更</td></tr>
+    <tr><td>TikTok / IG Reels</td><td>海外短视频分发</td><td>竖屏同步</td></tr>
+    <tr><td>Facebook / Reddit</td><td>海外华人社群渗透（轻运营）</td><td>分发 + 社群互动</td></tr>
+    <tr><td>快手 / 知乎 / 微博</td><td>占位即可</td><td>同步/搜索</td></tr>
+  </table>
+  <p><strong>海外优先级</strong>：Tier 1（第 6 个月）中文内容出海（海外华人 + 赴日滑雪人群，零成本复用）→ Tier 2（第 9–12 个月）英语（AI 配音，刻滑教学在 YouTube 是大赛道）→ Tier 3（远期）日语/赴日中文教学盘，暂挂起。</p>
+
+  <h3>2.3 内容类型（五条产品线）</h3>
+  <table>
+    <tr><th>类型</th><th>占比</th><th>生产方式</th><th>作用</th></tr>
+    <tr><td><strong>A. 纠错对比</strong>（一节课改一个动作，AI 姿态标注前后对比）</td><td>核心</td><td>实拍 + AI 后期</td><td>差异化命门："AI 工具 + 省冠眼光"</td></tr>
+    <tr><td>B. 数字人知识日更（答疑库生产化）</td><td>~50%</td><td>全 AI</td><td>铺量、占搜索、省时间</td></tr>
+    <tr><td>C. 人设信任（比赛 vlog、松花湖驻扎、学员进步纪录）</td><td>~30%</td><td>实拍</td><td>高客单信任来源，数字人的燃料</td></tr>
+    <tr><td>D. 装备测评</td><td>≤15%</td><td>实拍+数字人混</td><td>商单载体</td></tr>
+    <tr><td>E. AI 工具叙事（"我让 AI 学会刻滑"系列）</td><td>少量精品</td><td>录屏+实拍</td><td>破圈钩子，科技人群入口</td></tr>
+  </table>
+  <p class="muted">周更结构：数字人 4–5 条 + 真人 2 条 + 长视频 1 条。"冠军教练的 AI 分身" 本身即传播钩子。</p>
+
+  <h3>2.4 生产方式（AI 流水线，人只做出镜和终审）</h3>
+  <div class="formula">一次拍摄 → LLM+知识库起草脚本 → 数字人生成 → 自动剪辑/字幕 → 多语言（中/英配音字幕）→ 多尺寸重构（16:9 / 9:16 / 1:1）→ 一键全平台分发</div>
+  <ul>
+    <li>个人只做：选题终审（每周 1–2 h）、真人出镜（每周 2–3 h）</li>
+    <li>私域承接：自动欢迎语 + 钩子资料 + AI 分身答疑，大幅压缩回消息时间</li>
+    <li>数字人只讲独家内容（冠军视角、学员案例、解读库），不讲通用科普 —— 防同质化与限流</li>
+  </ul>
+
+  <h3>2.5 投放方式</h3>
+  <div class="callout warn">
+    <div class="label">铁律</div>
+    只投已经被自然流量验证的素材（完播/互动超账号均值）；不投没经过市场投票的内容。
+  </div>
+  <table>
+    <tr><th>投放类型</th><th>工具/定向</th><th>目标</th></tr>
+    <tr><td>加热类</td><td>DOU+ / 小红书聚光；滑雪兴趣、一线城市、24–40 岁</td><td>放大 A/C 类爆款，涨粉 + 加微</td></tr>
+    <tr><td>转化类</td><td>10–11 月开板季投"私信/表单"目标</td><td>松花湖营招生（唯一为成交而投的预算）</td></tr>
+    <tr><td>海外</td><td>前 6 个月纯自然；之后 TikTok Spark Ads</td><td>放大已验证素材</td></tr>
+    <tr><td>脉冲日历</td><td>11 月开板、雪季中、赛事节点、春节</td><td>平时蓄水，脉冲收割</td></tr>
+  </table>
+
+  <h3>2.6 商单业务升级路径</h3>
+  <div class="formula">装备置换（现状 ~1 万/年） → 单条付费（测评/植入/口播，效果分佣+一口价双轨） → 年框大使（比赛曝光 + 雪服雪板露出 + 内容年框，2–3 个品牌）</div>
+  <ul>
+    <li><strong>Media kit 是谈判开关</strong>：全平台粉丝/播放中位数/粉丝画像（滑雪人群 = 汽车、3C、金融的高价值人群；程序员受众对数码商单尤其值钱）/历史转化案例</li>
+    <li><strong>品类优先级</strong>：雪具 → 雪场/室内雪场（联合课程）→ 汽车/3C（客单天花板最高）→ 运动消费</li>
+    <li><strong>纪律</strong>：商单占比 ≤15%；不接与"高端教学"定位冲突的品牌</li>
+  </ul>
+
+  <h3>2.7 12 个月节奏</h3>
+  <table>
+    <tr><th>阶段</th><th>动作</th><th>验收信号</th></tr>
+    <tr><td>0–3 月</td><td>抖音+小红书双平台跑通生产流；数字人日更；私域承接搭好</td><td>月加微 100+；跑出 3 条自然爆款</td></tr>
+    <tr><td>3–6 月</td><td>全渠道铺开；B 站长视频；松花湖营首次转化投放；商单首单现金</td><td>营期报满；首笔付费商单</td></tr>
+    <tr><td>6–12 月</td><td>YouTube/TikTok 中文盘上线（AI 配音）；media kit v1；年框谈判</td><td>商单月收入稳定；出现主动询价</td></tr>
+  </table>
+  <div class="callout">
+    <div class="label">北极星指标</div>
+    只有一个：<strong>加微数</strong>。粉丝量、播放量都是过程指标。
+  </div>
+</section>
+
+<!-- ============ 三、财务推演 ============ -->
+<section id="finance">
+  <h2><span class="no">三、</span>财务推演（保守口径：每周 10 小时）</h2>
+
+  <h3>3.1 时间预算（10 h/周）</h3>
+  <table>
+    <tr><th>用途</th><th>每周</th><th>说明</th></tr>
+    <tr><td>数字人内容（5–7 条）</td><td>1.5 h</td><td>只做选题终审和发布检查</td></tr>
+    <tr><td>真人出镜（2 条）</td><td>2 h</td><td>拍摄+口播，不追求精致</td></tr>
+    <tr><td>分发 / 数据 / 评论</td><td>1 h</td><td>自动分发前提下</td></tr>
+    <tr><td><strong>成交承接</strong></td><td><strong>4 h</strong></td><td>唯一直接产钱的时间，优先保护</td></tr>
+    <tr><td>机动 / 复盘</td><td>1.5 h</td><td>每周看一次加微数</td></tr>
+  </table>
+
+  <h3>3.2 保守假设参数</h3>
+  <ul>
+    <li>月加微：20 → 60 爬坡，<strong>年均 40</strong> → 全年约 480 人</li>
+    <li>加微 → 体验：35%；会员（3 万）成交率：约 4%</li>
+    <li>松花湖营 2 期，内容来源营员 4–6 人，人均 6k</li>
+    <li>商单：前 6 个月置换为主，现金集中在下半年（2–5 万）</li>
+    <li>AI 工具第 1 年不计入（10 小时内塞不下开发）</li>
+  </ul>
+
+  <h3>3.3 分渠道收入推演（第 1 年）</h3>
+  <table>
+    <tr><th>渠道</th><th>年加微（估）</th><th>保守收入</th><th>构成</th></tr>
+    <tr><td>小红书</td><td>~190</td><td><strong>5–8 万</strong></td><td>会员 2 人 + 营 1–2 人</td></tr>
+    <tr><td>抖音</td><td>~145</td><td><strong>3–6 万</strong></td><td>会员 1–2 人 + 营 1 人</td></tr>
+    <tr><td>视频号</td><td>~48</td><td>0–3 万</td><td>0–1 个高客单</td></tr>
+    <tr><td>YouTube 中文盘</td><td>~48</td><td>0.5–1 万</td><td>海外华人营位/远程诊断</td></tr>
+    <tr><td>B 站 / TikTok 等</td><td>~48</td><td>≈0</td><td>资产型/播种期投入</td></tr>
+    <tr><td>商单</td><td>—</td><td>2–5 万</td><td>下半年起量</td></tr>
+    <tr><td><strong>内容线合计</strong></td><td><strong>~480</strong></td><td><strong>12–25 万</strong></td><td>中值约 18 万</td></tr>
+  </table>
+
+  <h3>3.4 汇总</h3>
+  <table>
+    <tr><th>口径</th><th>金额</th><th>说明</th></tr>
+    <tr><td>现有口碑盘</td><td>~30 万</td><td>教学时间不变</td></tr>
+    <tr><td>内容线增量（保守）</td><td>+15–25 万</td><td>每周 10 小时投入</td></tr>
+    <tr><td><strong>第 1 年合计</strong></td><td><strong>45–55 万</strong></td><td>VIP 会员涨价已含于口碑盘内</td></tr>
+    <tr><td>第 3 年（中性）</td><td>75–95 万</td><td>+ C 端工具、商单年框、助教交付</td></tr>
+    <tr><td>第 5 年+（天花板）</td><td>100 万+</td><td>经营者角色；教学时间占比下降</td></tr>
+  </table>
+  <div class="callout">
+    <div class="label">敏感性提示</div>
+    全表对"月加微数"极度敏感：月加微 40 → 打对折；200 → 接近翻倍。敏感变量：会员数、客单价、营期数。
+  </div>
+</section>
+
+<!-- ============ 四、红线 ============ -->
+<section id="redlines">
+  <h2><span class="no">四、</span>生存红线与执行节奏</h2>
+
+  <h3>4.1 三条生存红线</h3>
+  <div class="callout warn">
+    <div class="label">红线 1 · 渠道</div>
+    月加微连续两个月 &lt; 30 → 停 B 站、视频号只同步不运营，all-in 小红书 + 抖音。渠道贪多是 10 小时模式的头号死因。
+  </div>
+  <div class="callout warn">
+    <div class="label">红线 2 · 承接</div>
+    承接时间被挤压 &lt; 3 h/周 → 减内容产量（数字人降到 3–4 条）。不加承接 = leads 烂在手里，前面流量全白费。宁可少发内容，不可烂接 lead。
+  </div>
+  <div class="callout warn">
+    <div class="label">红线 3 · 商单</div>
+    商单洽谈 &gt; 5 h/月 → 推掉或延后。第 1 年商单是顺带的，不值动会员成交时间。
+  </div>
+
+  <h3>4.2 季节节奏</h3>
+  <p><strong>上海 9 个月攒内容、做承接；松花湖 3 个月吃存量、做转化。</strong>雪季前去一次拍够 3 个月真人素材库存，营期只发数字人 + 库存。</p>
+
+  <h3>4.3 风险清单</h3>
+  <table>
+    <tr><th>风险</th><th>应对</th></tr>
+    <tr><td>数字人内容同质化/平台限流</td><td>只讲独家内容；真人内容占比保 30% 底线</td></tr>
+    <tr><td>多平台精力被榨干</td><td>分发自动化，绝不人工逐平台运营</td></tr>
+    <tr><td>涨价流失</td><td>老会员老价、新会员新价过渡</td></tr>
+    <tr><td>交付绑定个人（伤病）</td><td>教学法文档化 + 数字分身 + 助教梯队</td></tr>
+    <tr><td>体力衰减（职业固有风险）</td><td>"教教练"终局模块第 3 年后启动</td></tr>
+    <tr><td>安全责任（带队/营期）</td><td>保险 + 协议先行</td></tr>
+  </table>
+</section>
+
+<!-- ============ 附录 ============ -->
+<section id="methodology">
+  <h2><span class="no">附录 ·</span>机会挖掘方法论（速查）</h2>
+  <h3>底层公式：机会 = 错配</h3>
+  <table>
+    <tr><th>错配类型</th><th>含义</th><th>滑雪领域例</th></tr>
+    <tr><td>需求缺口</td><td>有人要，没人好好给</td><td>进阶者想练刻滑，雪场只有初级团课</td></tr>
+    <tr><td>信息缺口</td><td>有好东西，没人知道</td><td>水平超出当地名气</td></tr>
+    <tr><td>空间错配</td><td>供给和需求不在同一地方</td><td>南方的钱 vs 北方的雪</td></tr>
+    <tr><td>时间错配</td><td>供给和需求不在同一时间</td><td>雪季爆满 vs 夏天闲置</td></tr>
+  </table>
+  <h3>六维扫描法</h3>
+  <ol>
+    <li><strong>从客群出发</strong>：切片三问——痛点是什么？现在找谁解决？现在的供给烂在哪？</li>
+    <li><strong>从场景出发</strong>：流程（学前/学中/学后/不学的日子）× 空间（雪上/大厅/城市/线上），逐格问"这一刻谁难受？"</li>
+    <li><strong>从地域出发</strong>：钱和雪错位的地方就是生意</li>
+    <li><strong>从产业链出发</strong>：沿钱流走——装备/教学/内容/赛事/旅行，哪个环节利润厚、离能力近？</li>
+    <li><strong>从技术出发</strong>：问"什么成本趋零"——AI 让动作分析、个性化计划、内容产能趋零，新品类由此诞生</li>
+    <li><strong>从事件出发</strong>：开板季、节假日、赛事节点——机会藏在日历里</li>
+  </ol>
+  <h3>交集法</h3>
+  <p>画两个圈取交集，交集处长出新品类（滑雪 × 编程 = 滑雪黑客松；滑雪 × 亲子 = 家庭营）。交集价值 ≈ 两圈规模 × 重合稀有度。<strong>最高级的一招：其中一个圈就是你自己</strong>（"省冠教练 ∩ AI builder"）。</p>
+  <h3>筛选漏斗（五问）</h3>
+  <ol>
+    <li>已验证付费？（没人付过钱的东西先默认不存在）</li>
+    <li>复用现有资产？（客户、名气、内容、工具）</li>
+    <li>边际时间成本？（你的瓶颈是时间）</li>
+    <li>天花板？（能否脱离个人时间复制）</li>
+    <li>两周能 MVP 吗？（验证不了的点子是幻觉）</li>
+  </ol>
+</section>
+
+</main>
+</div>
+
+<div class="foot">小米的商业计划书 · 数字均为基于明确假设的推演，每月复盘时更新假设</div>
+
+</body>
+</html>
