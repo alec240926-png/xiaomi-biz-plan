@@ -1,0 +1,23 @@
+content-production-plan.html
+  s_2ecb857fc39156::t_bb37889403be10 1-401
+index.html
+  s_2ecb857fc39156::t_bb37889403be10 176,342-345
+小米的商业计划书.html
+  s_2ecb857fc39156::t_bb37889403be10 1-535
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.52-trip",
+  "base_commit_sha": "615869f6ac29af7ed4c4def37165df4dc6be28e2",
+  "prompts": {},
+  "sessions": {
+    "s_2ecb857fc39156": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fa60e588-4394-4f13-bc32-d620535654eb",
+        "model": "unknown"
+      },
+      "human_author": "butian0915 <butian0915@lpt015606.cn1.global.ctrip.com>"
+    }
+  }
+}
