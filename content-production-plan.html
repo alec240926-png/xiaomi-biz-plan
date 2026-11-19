@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内容制作执行手册</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@600;700&display=swap">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1e293b;
+    --ink-soft: #475569;
+    --ink-faint: #94a3b8;
+    --line: #e2e8f0;
+    --accent: #0369a1;
+    --accent-bg: #e0f2fe;
+    --accent-border: #0284c7;
+    --warn: #b91c1c;
+    --warn-bg: #fef2f2;
+    --ok: #047857;
+    --ok-bg: #ecfdf5;
+    --th-bg: #f1f5f9;
+    --zebra: #fafbfd;
+    --panel: #f1f5f9;
+    --header-1: #0f172a;
+    --header-2: #1e3a5f;
+    --header-meta: #93c5fd;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0c1420;
+      --card: #141e2c;
+      --ink: #e2e8f0;
+      --ink-soft: #aebacb;
+      --ink-faint: #7686a0;
+      --line: #273346;
+      --accent: #38bdf8;
+      --accent-bg: rgba(56, 189, 248, 0.10);
+      --accent-border: #0ea5e9;
+      --warn: #fca5a5;
+      --warn-bg: rgba(248, 113, 113, 0.10);
+      --ok: #6ee7b7;
+      --ok-bg: rgba(52, 211, 153, 0.10);
+      --th-bg: #1a2434;
+      --zebra: rgba(255, 255, 255, 0.02);
+      --panel: #1a2434;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0c1420;
+    --card: #141e2c;
+    --ink: #e2e8f0;
+    --ink-soft: #aebacb;
+    --ink-faint: #7686a0;
+    --line: #273346;
+    --accent: #38bdf8;
+    --accent-bg: rgba(56, 189, 248, 0.10);
+    --accent-border: #0ea5e9;
+    --warn: #fca5a5;
+    --warn-bg: rgba(248, 113, 113, 0.10);
+    --ok: #6ee7b7;
+    --ok-bg: rgba(52, 211, 153, 0.10);
+    --th-bg: #1a2434;
+    --zebra: rgba(255, 255, 255, 0.02);
+    --panel: #1a2434;
+    color-scheme: dark;
+  }
+
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .site-header {
+    background: linear-gradient(135deg, var(--header-1) 0%, var(--header-2) 100%);
+    color: #fff;
+    padding-block: 44px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .site-header h1 {
+    font-family: "Noto Serif SC", "PingFang SC", serif;
+    font-size: 27px;
+    letter-spacing: 1px;
+    text-wrap: balance;
+    max-width: 1132px;
+    margin: 0 auto;
+  }
+  .site-header .meta {
+    color: var(--header-meta);
+    margin-top: 10px;
+    font-size: 14px;
+    max-width: 1132px;
+    margin-inline: auto;
+  }
+  .backbar {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 14px 24px 0;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  .backbar a {
+    display: inline-block;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 14px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 99px;
+    padding: 6px 16px;
+  }
+  .backbar a:hover { border-color: var(--accent); }
+  .layout {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding-block: 18px 80px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-family: "Noto Serif SC", "PingFang SC", serif;
+    font-size: 21px;
+    margin-bottom: 6px;
+    color: var(--ink);
+    text-wrap: balance;
+  }
+  h2 .no { color: var(--accent); margin-right: 8px; }
+  h3 {
+    font-size: 16.5px;
+    margin: 26px 0 8px;
+    padding-left: 10px;
+    border-left: 4px solid var(--accent-border);
+    text-wrap: balance;
+  }
+  .plat-meta { margin: 2px 0 8px; }
+  p { margin: 10px 0; }
+  ul, ol { margin: 8px 0 10px 22px; }
+  li { margin: 4px 0; }
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    border-collapse: collapse;
+    margin: 14px 0;
+    font-size: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  th, td { border: 1px solid var(--line); padding: 9px 12px; text-align: left; vertical-align: top; }
+  th { background: var(--th-bg); font-weight: 600; white-space: nowrap; }
+  tr:nth-child(even) td { background: var(--zebra); }
+  .callout {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--accent-border);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .callout.warn { background: var(--warn-bg); border-left-color: var(--warn); }
+  .callout.ok { background: var(--ok-bg); border-left-color: var(--ok); }
+  .callout .label { font-weight: 700; font-size: 13px; letter-spacing: 1px; }
+  .callout.warn .label { color: var(--warn); }
+  .callout.ok .label { color: var(--ok); }
+  .callout a { color: var(--accent); }
+  .formula {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 14px;
+    text-align: center;
+    background: var(--panel);
+    border-radius: 8px;
+    padding: 12px;
+    margin: 12px 0;
+  }
+  .tag {
+    display: inline-block;
+    font-size: 12px;
+    padding: 1px 8px;
+    border-radius: 99px;
+    background: var(--accent-bg);
+    color: var(--accent);
+    margin-right: 4px;
+  }
+  .tag.green { background: var(--ok-bg); color: var(--ok); }
+  .muted { color: var(--ink-faint); font-size: 13px; }
+  .foot {
+    text-align: center;
+    color: var(--ink-faint);
+    font-size: 13px;
+    padding-block: 20px 40px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+  }
+  @media (max-width: 700px) {
+    section { padding: 20px; }
+  }
+  @media print {
+    body { background: #fff; font-size: 12px; }
+    .backbar { display: none; }
+    .site-header { background: #fff; color: #1e293b; padding-block: 20px; border-bottom: 3px solid #0f172a; }
+    .site-header .meta { display: none; }
+    .layout { padding: 0 8px; }
+    section { border: none; border-bottom: 1px solid #ccc; border-radius: 0; page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <h1>🎬 内容制作执行手册</h1>
+  <div class="meta">小米的商业计划书 · 附件 · 2026 年 11 月 · 内容线人力上限：每周 6 小时</div>
+</header>
+
+<div class="backbar"><a href="小米的商业计划书.html">← 返回商业计划书</a></div>
+
+<div class="layout">
+
+<main>
+
+<!-- ============ 第一部分 ============ -->
+<section>
+  <h2><span class="no">第一部分</span>平台逐个拆解</h2>
+  <p class="muted">平台规则（粉丝门槛、分成比例、商单入驻条件）变动频繁，以下以量级描述，动手前以各平台后台当期显示为准。</p>
+
+  <h3>0. 总表：六个渠道，6 小时内容线</h3>
+  <table>
+    <tr><th>平台</th><th>角色</th><th>核心盈利方式</th><th>每周时间</th><th>第 1 年预期</th></tr>
+    <tr><td>小红书</td><td>转化主阵地</td><td>蒲公英商单 + 买手佣金 + 引流成交</td><td>1 h</td><td>5–8 万</td></tr>
+    <tr><td>抖音</td><td>流量 + 直播</td><td>星图商单 + 橱窗 CPS + 引流成交</td><td>1 h</td><td>3–6 万</td></tr>
+    <tr><td>视频号</td><td>私域联动</td><td>直播带货 + 分成（邀请制）</td><td>0.2 h</td><td>0–3 万</td></tr>
+    <tr><td>B 站</td><td>资产 + 科技人群</td><td>花火商单 + 创作激励</td><td>0.5 h</td><td>≈0（资产型）</td></tr>
+    <tr><td>YouTube</td><td>海外主阵地</td><td>YPP 广告分成 + 引流</td><td>0.3 h</td><td>0.5–1 万</td></tr>
+    <tr><td>TikTok/IG/FB</td><td>播种</td><td>Creator Rewards（有门槛）</td><td>0.2 h</td><td>≈0</td></tr>
+    <tr><td><strong>合计</strong></td><td></td><td></td><td><strong>3 h 分发 + 3 h 生产</strong></td><td><strong>10–18 万 + 商单</strong></td></tr>
+  </table>
+  <div class="callout">
+    <div class="label">两个前提</div>
+    ① 所有"预期收入"的主体都是<strong>引流到私域后的成交</strong>（会员 3 万 / 营 5–8k），平台分成是零头；② 内容线 6 小时之外的 4 小时是成交承接，两条线不可互相挪用。
+  </div>
+
+  <h3>1. 小红书 —— 转化主阵地，优先级最高</h3>
+  <p class="plat-meta"><span class="tag">1 h/周</span><span class="tag green">第 1 年 5–8 万</span></p>
+  <ul>
+    <li><strong>人群画像</strong>：一二线女性为主（约七成），20–35 岁，消费决策前必搜，生活方式社区心智</li>
+    <li><strong>做什么</strong>：图文（教学干货清单、装备对比、学员前后对比）每周 3–4 篇；60 秒内短视频（纠错对比类）同步发；<strong>评论区和私信是主战场</strong>，爆款评论必回</li>
+    <li><strong>特点</strong>：长尾搜索流量占大头，一条爆款能吃一年；封面+标题决定 80% 点击</li>
+    <li><strong>盈利方式</strong>：蒲公英平台商单（约千粉可入驻，报价随粉丝量上浮）；买手合作挂链拿佣金；直播带货；平台<strong>没有播放分成</strong></li>
+    <li><strong>一年预期</strong>：加微 ~190 人，引流成交 5–8 万；蒲公英商单 0–2 单（下半年起）</li>
+  </ul>
+
+  <h3>2. 抖音 —— 流量池 + 直播转化场</h3>
+  <p class="plat-meta"><span class="tag">1 h/周（含直播摊薄）</span><span class="tag green">第 1 年 3–6 万</span></p>
+  <ul>
+    <li><strong>人群画像</strong>：全年龄全地域，男性偏多，娱乐消费属性，完播率逻辑</li>
+    <li><strong>做什么</strong>：竖屏短视频日更（流水线供片）；<strong>每两周 1 次直播</strong>（雪季加密：学员答疑 + 装备 + 营期预告），直播是抖音唯一的高转化场景</li>
+    <li><strong>特点</strong>：公域推荐全国最强，但粉丝不值钱、流量值钱；单条爆款带来瞬时加微洪峰——会直接冲击承接红线，提前备好自动回复</li>
+    <li><strong>盈利方式</strong>：星图商单（入驻有粉丝门槛，以星图后台为准）；商品橱窗 CPS（需粉丝门槛+小额保证金）；播放分成类计划规则变动频繁，<strong>不纳入预期</strong>；直播打赏/带货</li>
+    <li><strong>一年预期</strong>：加微 ~145 人，成交 3–6 万；橱窗顺挂雪具链接，佣金当零花</li>
+  </ul>
+
+  <h3>3. 视频号 —— 私域的延伸，不花心思</h3>
+  <p class="plat-meta"><span class="tag">0.2 h/周</span><span class="tag green">第 1 年 0–3 万</span></p>
+  <ul>
+    <li><strong>人群画像</strong>：30–50 岁，中年高净值，微信生态内被动消费内容</li>
+    <li><strong>做什么</strong>：只同步分发，不做原创；年底看数据决定是否加直播</li>
+    <li><strong>特点</strong>：算法弱、社交强，适合"老会员转发到朋友圈"场景</li>
+    <li><strong>盈利方式</strong>：创作分成（邀请制，随缘）；直播打赏/带货（潜力项）</li>
+    <li><strong>一年预期</strong>：0–1 个高客单，纯捡漏</li>
+  </ul>
+
+  <h3>4. B 站 —— 当年不赚钱，两个战略价值</h3>
+  <p class="plat-meta"><span class="tag">0.5 h/周</span><span class="tag green">第 1 年 ≈0（资产型）</span></p>
+  <ul>
+    <li><strong>人群画像</strong>：18–30 岁男性为主，学生 + 程序员 + 技术宅浓度全平台最高——<strong>黑客松种子用户和 AI 工具叙事的受众就在这里</strong></li>
+    <li><strong>做什么</strong>：每周 1 条 5–10 分钟横屏长视频（刻滑力学解析 / AI 动作分析工具 demo / 教学体系连载），弹幕互动</li>
+    <li><strong>特点</strong>：搜索长尾最强，三年前视频还在带流量；粉丝粘性最高，商单质量高（科技品牌偏爱 B 站）</li>
+    <li><strong>盈利方式</strong>：创作激励（门槛不高、收益微薄）；花火商单（有粉丝门槛）；充电/课堂</li>
+    <li><strong>一年预期</strong>：≈0，资产型投入；第 2 年起商单和工具种子用户在这里回收</li>
+  </ul>
+
+  <h3>5. YouTube —— 海外主阵地，第 6 个月启动</h3>
+  <p class="plat-meta"><span class="tag">0.3 h/周</span><span class="tag green">第 1 年 0.5–1 万</span></p>
+  <ul>
+    <li><strong>人群画像</strong>：中文盘 = 海外华人 + 留学生（付费能力最强的一群）；英文盘 = 全球刻滑爱好者（YouTube 上 carving 教学是大赛道）</li>
+    <li><strong>做什么</strong>：中文盘复用国内内容零成本；英文盘用 AI 配音+字幕（声音克隆或母语级 TTS），每周 1 条长视频 + Shorts 同步</li>
+    <li><strong>特点</strong>：内容寿命最长（一条视频吃三年）；搜索+推荐双引擎</li>
+    <li><strong>盈利方式</strong>：YPP 广告分成（公开门槛：1000 订阅 + 4000 小时观看，或 90 天内 1000 万 Shorts 播放，以官方为准；滑雪户外类 RPM 量级为每千次播放 1–5 美元，以实际为准）；联盟营销</li>
+    <li><strong>一年预期</strong>：松花湖营海外华人订单 0.5–1 万；广告分成 ≈0</li>
+  </ul>
+
+  <h3>6. TikTok / Instagram / Facebook —— 纯播种</h3>
+  <p class="plat-meta"><span class="tag">0.2 h/周</span><span class="tag green">第 1 年 ≈0</span></p>
+  <ul>
+    <li><strong>做什么</strong>：竖屏内容一键同步，不运营；Facebook 加 2–3 个海外华人滑雪群，每周冒泡一次</li>
+    <li><strong>盈利方式</strong>：TikTok Creator Rewards（万粉+播放门槛，且分地区，前期够不到）；IG/FB 无直接分成，靠品牌合作远期变现</li>
+    <li><strong>一年预期</strong>：≈0；第 2 年英文盘跑通后回收</li>
+  </ul>
+</section>
+
+<!-- ============ 第二部分 ============ -->
+<section>
+  <h2><span class="no">第二部分</span>Agent 系统设计方案</h2>
+
+  <h3>0. 总体架构：一个中台 + 六个 Agent</h3>
+  <div class="formula">内容中台（飞书多维表格：选题库 / 知识库 / 素材库 / 数据看板）<br>→ ① 雷达 → ② 编剧 → ③ 制片 → ④ 投放 → ⑤ 营收 → ⑥ 私域</div>
+  <div class="callout">
+    <div class="label">总原则</div>
+    每个 Agent 的上线标准 = <strong>每周至少省你 2 小时</strong>，达不到就回炉，不搞技术的自我感动。
+  </div>
+
+  <h3>① 雷达 Agent —— 每天早上的《选题雷达》</h3>
+  <ul>
+    <li><strong>数据源</strong>：①平台热榜（抖音/小红书热搜；轻量方案 = 人工扫一眼喂给 LLM，不为上爬虫冒封号风险）；②10 个对标账号监控（更新即抓取标题+数据）；③搜索趋势（微信指数/百度指数/Google Trends，周度）；④赛事日历 + 开板节点（手工维护一张表）</li>
+    <li><strong>输出</strong>：每天早上 8 点推送 5–10 条选题，每条附：热度证据 / 切入角度 / 适配渠道 / 预估制作成本</li>
+    <li><strong>人工介入</strong>：勾选 3–5 条进选题库，30 秒</li>
+    <li><strong>上线顺序</strong>：第 3 周（前期知识库就够选题吃）</li>
+  </ul>
+
+  <h3>② 编剧 Agent —— 一鱼多吃的脚本工厂</h3>
+  <ul>
+    <li><strong>输入</strong>：勾选的选题 + <strong>知识库 RAG</strong>（历史答疑记录、教学文档、比赛素材描述——先花一个下午灌进去，一次性资产）</li>
+    <li><strong>输出</strong>：按渠道模板生成——抖音 60s（前 3 秒钩子三选一：错误示范/反常识断言/结果前置，口播稿+字幕文件+标签）；小红书（封面标题 10 选 1 + 正文 + 话题标签库自动匹配）；B 站（分镜大纲 + 口播稿，照着念+补画面）；YouTube 英文版（AI 翻译 + 母语化改写，非直译）</li>
+    <li><strong>人工介入</strong>：每周两次、每次 15 分钟终审——只改三处：事实、立场、钩子</li>
+    <li><strong>上线顺序</strong>：第 1 周，最先做（直接砍掉现在写脚本的时间）</li>
+  </ul>
+
+  <h3>③ 制片 Agent —— 你拍+配，数字人来建</h3>
+  <ul>
+    <li><strong>数字人设计</strong>：形象用你的视频做数字克隆（不是 3D 卡通人——"冠军教练的 AI 分身"人设必须与你本人一致，否则信任断裂）；声音克隆做 TTS，B 类内容完全无人化；口型驱动先用成熟 API 跑通，跑稳后再自研降本</li>
+    <li><strong>分工表</strong>：B 类（数字人知识）<strong>全自动</strong>：脚本→TTS→数字人→包装→成片，你只看一眼；A 类（纠错对比）：你雪场拍 3–5 条素材丢进文件夹 → AI 自动剪（粗剪→Whisper 字幕→错误标注叠加→前后对比包装）→ 你审；C 类（人设信任）：你拍 vlog 素材，AI 按模板出片；D 类（装备测评）：口播你录，画面 AI 补（B-roll 素材库自动匹配）</li>
+    <li><strong>素材流水线</strong>：手机拍 → 自动同步素材库（按"日期-场景-学员编号"归档，后期秒剪的前提）→ 成片回传内容中台待审</li>
+    <li><strong>人工介入</strong>：每周拍摄 1.5 h（一次拍完全部）+ 终审 0.5 h</li>
+    <li><strong>上线顺序</strong>：第 1–2 周，与编剧 Agent 构成"产能双核"</li>
+  </ul>
+
+  <h3>④ 投放 Agent —— 发布、回收、告警</h3>
+  <ul>
+    <li><strong>发布</strong>：半自动——按渠道排好发布时间，生成标题/标签/封面 A/B 两版，<strong>你一键确认</strong>（平台 API 限制 + 防封号，不做全自动发布）</li>
+    <li><strong>数据回收</strong>：每周自动生成周报：分渠道播放/完播/互动/涨粉/<strong>加微数</strong>（各平台钩子资料放不同渠道码做归因）；平台数据优先官方后台导出+导入，爬虫只做补充且有分寸</li>
+    <li><strong>红线监控</strong>：月加微连续两周 &lt;30 自动告警（触发砍渠道动作）；承接响应时长 &gt;5 分钟告警</li>
+    <li><strong>人工介入</strong>：每周看 10 分钟周报</li>
+    <li><strong>上线顺序</strong>：第 3–4 周</li>
+  </ul>
+
+  <h3>⑤ 营收 Agent —— 预期差距的深度解析（每月一次）</h3>
+  <p><strong>漏斗五层对标</strong>：实际 vs 预期，逐层定位问题——</p>
+  <table>
+    <tr><th>层</th><th>预期值</th><th>低于预期时的诊断方向</th></tr>
+    <tr><td>曝光 → 加微</td><td>月 40 人</td><td>内容供给量够吗？爆款率？钩子资料领取率？→ 问题在内容或钩子</td></tr>
+    <tr><td>加微 → 响应</td><td>&lt;5 分钟</td><td>自动欢迎失效？AI 分身答非所问率？→ 问题在私域 Agent</td></tr>
+    <tr><td>响应 → 体验</td><td>35%</td><td>钩子吸引力衰减？体验课门槛太高？→ 问题在钩子设计</td></tr>
+    <tr><td>体验 → 成交</td><td>4%</td><td>体验课质量？报价时机？信任不足？→ 问题在交付和话术</td></tr>
+    <tr><td>成交结构</td><td>会员 : 营 : 商单</td><td>商单占比超 15% 告警；会员续费率下滑提前预警</td></tr>
+  </table>
+  <ul>
+    <li><strong>输出</strong>：月度复盘报告 = 漏斗图 + 差距归因（定位到哪一层）+ 三个可执行的修正建议 + 下月假设更新（反馈到财务推演表的参数）</li>
+    <li><strong>关键设计</strong>：Agent 只负责<strong>定位和提建议</strong>，决策永远是你——防止系统用漂亮的图表把你带进过度优化</li>
+  </ul>
+
+  <h3>⑥ 私域承接 Agent —— 已在主计划书规划</h3>
+  <p>自动欢迎语 + 钩子资料分发 + AI 分身答疑，本次不展开。</p>
+
+  <h3>7. 技术栈与成本（轻资产红线内）</h3>
+  <table>
+    <tr><th>组件</th><th>选型</th><th>成本</th></tr>
+    <tr><td>编排</td><td>n8n 自托管（或 Dify）</td><td>¥0（跑在自己的机器/云主机）</td></tr>
+    <tr><td>大模型</td><td>API 按量计费</td><td>¥200–500/月</td></tr>
+    <tr><td>内容中台/看板</td><td>飞书多维表格</td><td>¥0</td></tr>
+    <tr><td>数字人</td><td>现成 API 起步，跑通后自研</td><td>¥200–400/月</td></tr>
+    <tr><td>剪辑</td><td>剪映模板 + ffmpeg + Whisper</td><td>剪映会员小几百/年</td></tr>
+    <tr><td><strong>合计</strong></td><td></td><td><strong>¥500–1000/月</strong></td></tr>
+  </table>
+
+  <h3>8. 四周上线节奏</h3>
+  <table>
+    <tr><th>周</th><th>动作</th><th>省时间验证</th></tr>
+    <tr><td>第 1 周</td><td>知识库灌装（一个下午）+ 编剧 Agent 上线</td><td>脚本时间砍半即达标</td></tr>
+    <tr><td>第 2 周</td><td>数字人跑通 + 素材流水线 + 自动剪辑模板</td><td>B 类内容你零介入</td></tr>
+    <tr><td>第 3 周</td><td>雷达 Agent + 投放 Agent + 周报</td><td>选题时间 → 30 秒</td></tr>
+    <tr><td>第 4 周</td><td>私域 Agent 升级 + 首个营收月报</td><td>回消息时间砍半</td></tr>
+  </table>
+</section>
+
+</main>
+</div>
+
+<div class="foot">内容制作执行手册 · 小米的商业计划书附件 · 平台规则以各后台当期为准</div>
+
+</body>
+</html>
