@@ -1,0 +1,19 @@
+content-production-plan.html
+  s_2ecb857fc39156::t_ec5a8582ddef8d 311,313-462
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.52-trip",
+  "base_commit_sha": "3c5c22f24400a524c41f65f0b85c65b612d65114",
+  "prompts": {},
+  "sessions": {
+    "s_2ecb857fc39156": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fa60e588-4394-4f13-bc32-d620535654eb",
+        "model": "unknown"
+      },
+      "human_author": "butian0915 <butian0915@lpt015606.cn1.global.ctrip.com>"
+    }
+  }
+}
