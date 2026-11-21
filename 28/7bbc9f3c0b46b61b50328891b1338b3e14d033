@@ -1,0 +1,23 @@
+index.html
+  s_2ecb857fc39156::t_f15a878245f65f 327,365-367,370,373,375-377,404,421-422,475,483,488,491
+小米的商业计划书.html
+  s_2ecb857fc39156::t_f15a878245f65f 327,365-367,370,373,375-377,404,421-422,475,483,488,491
+content-production-plan.html
+  s_2ecb857fc39156::t_f15a878245f65f 464,486,488-490,492,521-542,550,552,558-560
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.52-trip",
+  "base_commit_sha": "287bbc9f3c0b46b61b50328891b1338b3e14d033",
+  "prompts": {},
+  "sessions": {
+    "s_2ecb857fc39156": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "fa60e588-4394-4f13-bc32-d620535654eb",
+        "model": "kimi-k3"
+      },
+      "human_author": "butian0915 <butian0915@lpt015606.cn1.global.ctrip.com>"
+    }
+  }
+}
