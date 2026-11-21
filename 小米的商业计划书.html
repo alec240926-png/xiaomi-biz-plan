@@ -204,6 +204,17 @@
     padding-left: max(16px, env(safe-area-inset-left, 0px));
     padding-right: max(16px, env(safe-area-inset-right, 0px));
   }
+  .svgwrap { overflow-x: auto; margin: 14px 0; }
+  .svgwrap svg { display: block; width: 100%; min-width: 680px; height: auto; }
+  .svgwrap text { font-family: inherit; fill: var(--ink); }
+  .svgwrap .faint { fill: var(--ink-faint); }
+  .svgwrap .chip { fill: var(--card); stroke: var(--line); }
+  .svgwrap .band { fill: var(--panel); stroke: var(--line); }
+  .svgwrap .tab { fill: var(--accent-bg); stroke: var(--line); }
+  .svgwrap .tabtxt { fill: var(--accent); font-weight: 700; }
+  .svgwrap .arr { stroke: var(--accent); stroke-width: 2; fill: none; }
+  .svgwrap .arrd { stroke: var(--warn); stroke-width: 1.5; fill: none; stroke-dasharray: 5 4; }
+  .svgwrap .me { stroke: var(--accent-border); stroke-width: 1.6; }
   @media (max-width: 900px) {
     .layout { flex-direction: column; }
     nav.toc { position: static; flex: none; width: 100%; box-sizing: border-box; }
@@ -232,6 +243,7 @@
 
 <nav class="toc">
   <div class="toc-title">目录</div>
+  <a href="#overview">全局视图</a>
   <a href="#summary">核心结论</a>
   <a href="#club">一、长期：VIP 俱乐部</a>
   <a href="#video">二、中短期：视频 + 商单</a>
@@ -241,6 +253,152 @@
 </nav>
 
 <main>
+
+<!-- ============ 全局视图 ============ -->
+<section id="overview">
+  <h2><span class="no">§</span>全局视图</h2>
+
+  <h3>架构图：四层 + 一个飞轮</h3>
+  <div class="svgwrap">
+  <svg viewBox="0 0 720 510" role="img" aria-label="项目架构图">
+    <defs>
+      <marker id="ah1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)"/></marker>
+      <marker id="ahd1" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--warn)"/></marker>
+    </defs>
+
+    <!-- 层标签 -->
+    <rect class="tab" x="30" y="24" width="86" height="84" rx="8"/><text class="tabtxt" x="73" y="72" text-anchor="middle" font-size="14">资产层</text>
+    <rect class="tab" x="30" y="138" width="86" height="94" rx="8"/><text class="tabtxt" x="73" y="191" text-anchor="middle" font-size="14">业务层</text>
+    <rect class="tab" x="30" y="262" width="86" height="94" rx="8"/><text class="tabtxt" x="73" y="315" text-anchor="middle" font-size="14">支撑层</text>
+    <rect class="tab" x="30" y="386" width="86" height="96" rx="8"/><text class="tabtxt" x="73" y="440" text-anchor="middle" font-size="14">渠道层</text>
+
+    <!-- 层底 -->
+    <rect class="band" x="126" y="24" width="524" height="84" rx="8"/>
+    <rect class="band" x="126" y="138" width="524" height="94" rx="8"/>
+    <rect class="band" x="126" y="262" width="524" height="94" rx="8"/>
+    <rect class="band" x="126" y="386" width="524" height="96" rx="8"/>
+
+    <!-- 资产层 chips -->
+    <rect class="chip" x="137" y="38" width="118" height="56" rx="6"/><text x="196" y="62" text-anchor="middle" font-size="13" font-weight="600">省冠头衔<tspan class="faint" x="196" y="78" font-size="11" font-weight="400">持续比赛</tspan></text>
+    <rect class="chip" x="265" y="38" width="118" height="56" rx="6"/><text x="324" y="62" text-anchor="middle" font-size="13" font-weight="600">教学法<tspan class="faint" x="324" y="78" font-size="11" font-weight="400">交付能力</tspan></text>
+    <rect class="chip" x="393" y="38" width="118" height="56" rx="6"/><text x="452" y="62" text-anchor="middle" font-size="13" font-weight="600">AI 自研能力<tspan class="faint" x="452" y="78" font-size="11" font-weight="400">工具 · Agent</tspan></text>
+    <rect class="chip" x="521" y="38" width="118" height="56" rx="6"/><text x="580" y="62" text-anchor="middle" font-size="13" font-weight="600">会员口碑<tspan class="faint" x="580" y="78" font-size="11" font-weight="400">客户资产</tspan></text>
+
+    <!-- 业务层 chips -->
+    <rect class="chip" x="137" y="152" width="118" height="66" rx="6"/><text x="196" y="180" text-anchor="middle" font-size="13" font-weight="600">① VIP 俱乐部<tspan class="faint" x="196" y="197" font-size="11" font-weight="400">基本盘 · 信任池</tspan></text>
+    <rect class="chip" x="265" y="152" width="118" height="66" rx="6"/><text x="324" y="180" text-anchor="middle" font-size="13" font-weight="600">② 松花湖营<tspan class="faint" x="324" y="197" font-size="11" font-weight="400">漏斗 · 利润峰</tspan></text>
+    <rect class="chip" x="393" y="152" width="118" height="66" rx="6"/><text x="452" y="180" text-anchor="middle" font-size="13" font-weight="600">③ 内容 + 商单<tspan class="faint" x="452" y="197" font-size="11" font-weight="400">获客 · 内容原生</tspan></text>
+    <rect class="chip" x="521" y="152" width="118" height="66" rx="6"/><text x="580" y="180" text-anchor="middle" font-size="13" font-weight="600">④ AI 工具<tspan class="faint" x="580" y="197" font-size="11" font-weight="400">第 2 年接棒</tspan></text>
+
+    <!-- 支撑层 chips -->
+    <rect class="chip" x="134" y="276" width="78" height="66" rx="6"/><text x="173" y="300" text-anchor="middle" font-size="12" font-weight="600">管家<tspan class="faint" x="173" y="318" font-size="10.5" font-weight="400">调度中枢</tspan></text>
+    <rect class="chip" x="220" y="276" width="78" height="66" rx="6"/><text x="259" y="300" text-anchor="middle" font-size="12" font-weight="600">编剧<tspan class="faint" x="259" y="318" font-size="10.5" font-weight="400">选题脚本</tspan></text>
+    <rect class="chip" x="306" y="276" width="78" height="66" rx="6"/><text x="345" y="300" text-anchor="middle" font-size="12" font-weight="600">制片<tspan class="faint" x="345" y="318" font-size="10.5" font-weight="400">AI 剪辑</tspan></text>
+    <rect class="chip" x="392" y="276" width="78" height="66" rx="6"/><text x="431" y="300" text-anchor="middle" font-size="12" font-weight="600">投放<tspan class="faint" x="431" y="318" font-size="10.5" font-weight="400">发布周报</tspan></text>
+    <rect class="chip" x="478" y="276" width="78" height="66" rx="6"/><text x="517" y="300" text-anchor="middle" font-size="12" font-weight="600">营收<tspan class="faint" x="517" y="318" font-size="10.5" font-weight="400">漏斗复盘</tspan></text>
+    <rect class="chip" x="564" y="276" width="78" height="66" rx="6"/><text x="603" y="300" text-anchor="middle" font-size="12" font-weight="600">私域<tspan class="faint" x="603" y="318" font-size="10.5" font-weight="400">承接转化</tspan></text>
+
+    <!-- 渠道层 -->
+    <text class="faint" x="271" y="402" text-anchor="middle" font-size="11">国内</text>
+    <text class="faint" x="536" y="402" text-anchor="middle" font-size="11">海外</text>
+    <rect class="chip" x="131" y="412" width="64" height="52" rx="6"/><text x="163" y="442" text-anchor="middle" font-size="12">小红书</text>
+    <rect class="chip" x="203" y="412" width="64" height="52" rx="6"/><text x="235" y="442" text-anchor="middle" font-size="12">抖音</text>
+    <rect class="chip" x="275" y="412" width="64" height="52" rx="6"/><text x="307" y="442" text-anchor="middle" font-size="12">视频号</text>
+    <rect class="chip" x="347" y="412" width="64" height="52" rx="6"/><text x="379" y="442" text-anchor="middle" font-size="12">B站</text>
+    <rect class="chip" x="427" y="412" width="50" height="52" rx="6"/><text x="452" y="442" text-anchor="middle" font-size="10">YouTube</text>
+    <rect class="chip" x="483" y="412" width="50" height="52" rx="6"/><text x="508" y="442" text-anchor="middle" font-size="10">TikTok</text>
+    <rect class="chip" x="539" y="412" width="50" height="52" rx="6"/><text x="564" y="442" text-anchor="middle" font-size="10">IG</text>
+    <rect class="chip" x="595" y="412" width="50" height="52" rx="6"/><text x="620" y="442" text-anchor="middle" font-size="10">FB</text>
+
+    <!-- 层间箭头 -->
+    <path class="arr" d="M 250 108 L 250 134" marker-end="url(#ah1)"/><text x="258" y="126" font-size="12">背书 · 素材 · 供血</text>
+    <path class="arr" d="M 250 232 L 250 258" marker-end="url(#ah1)"/><text x="258" y="250" font-size="12">供血 · 任务下发</text>
+    <path class="arr" d="M 250 356 L 250 382" marker-end="url(#ah1)"/><text x="258" y="374" font-size="12">分发 · 排程</text>
+    <path class="arr" d="M 470 262 L 470 236" marker-end="url(#ah1)"/><text x="478" y="250" font-size="12">案例 · 数据回流</text>
+    <path class="arr" d="M 470 386 L 470 360" marker-end="url(#ah1)"/><text x="478" y="374" font-size="12">数据回流 · 周报告警</text>
+
+    <!-- 右侧：收入线 + 飞轮 -->
+    <path class="arr" stroke-width="2.5" d="M 658 400 L 658 210 L 646 210" marker-end="url(#ah1)"/>
+    <text x="668" y="305" font-size="12" fill="var(--accent)" transform="rotate(-90 668 305)">获客 · 内容原生收入</text>
+    <path class="arrd" d="M 650 226 C 704 226 704 424 650 424" marker-end="url(#ahd1)"/>
+    <text x="708" y="325" font-size="11" fill="var(--warn)" transform="rotate(-90 708 325)">飞轮：成交→案例→素材→更强获客</text>
+  </svg>
+  </div>
+  <p class="muted">暗线：学员案例 → 内容素材（A 类弹药，入营协议带授权）；教学标注数据 → AI 工具解读库；投放数据 → 编剧选题。</p>
+
+  <h3>流程图：周运营泳道</h3>
+  <div class="svgwrap">
+  <svg viewBox="0 0 780 450" role="img" aria-label="周运营流程图">
+    <defs>
+      <marker id="ah2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--accent)"/></marker>
+      <marker id="ahd2" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="var(--warn)"/></marker>
+    </defs>
+
+    <!-- 日期表头 -->
+    <text class="faint" x="155" y="24" text-anchor="middle" font-size="13">周一</text>
+    <text class="faint" x="269" y="24" text-anchor="middle" font-size="13">周二</text>
+    <text class="faint" x="383" y="24" text-anchor="middle" font-size="13">周三</text>
+    <text class="faint" x="497" y="24" text-anchor="middle" font-size="13">周四</text>
+    <text class="faint" x="611" y="24" text-anchor="middle" font-size="13">周五</text>
+    <text class="faint" x="725" y="24" text-anchor="middle" font-size="13">周六</text>
+
+    <!-- 泳道标签 -->
+    <rect class="tab" x="8" y="36" width="86" height="58" rx="8"/><text class="tabtxt" x="51" y="70" text-anchor="middle" font-size="12">编剧Agent</text>
+    <rect class="tab" x="8" y="102" width="86" height="58" rx="8"/><text class="tabtxt" x="51" y="136" text-anchor="middle" font-size="12">你</text>
+    <rect class="tab" x="8" y="168" width="86" height="58" rx="8"/><text class="tabtxt" x="51" y="202" text-anchor="middle" font-size="12">制片·AI剪辑</text>
+    <rect class="tab" x="8" y="234" width="86" height="58" rx="8"/><text class="tabtxt" x="51" y="268" text-anchor="middle" font-size="12">投放Agent</text>
+    <rect class="tab" x="8" y="300" width="86" height="58" rx="8"/><text class="tabtxt" x="51" y="334" text-anchor="middle" font-size="12">渠道·私域</text>
+    <rect class="tab" x="8" y="380" width="86" height="52" rx="8"/><text class="tabtxt" x="51" y="410" text-anchor="middle" font-size="12">管家Agent</text>
+
+    <!-- 编剧 -->
+    <rect class="chip" x="105" y="42" width="100" height="46" rx="6"/><text x="155" y="62" text-anchor="middle" font-size="12" font-weight="600">雷达推送<tspan class="faint" x="155" y="78" font-size="10.5" font-weight="400">10 条候选</tspan></text>
+
+    <!-- 你 -->
+    <rect class="chip me" x="105" y="108" width="100" height="46" rx="6"/><text x="155" y="136" text-anchor="middle" font-size="12" font-weight="600">终审勾选</text>
+    <rect class="chip me" x="219" y="108" width="100" height="46" rx="6"/><text x="269" y="128" text-anchor="middle" font-size="12" font-weight="600">集中录制<tspan class="faint" x="269" y="144" font-size="10.5" font-weight="400">1.5–2 h</tspan></text>
+    <rect class="chip me" x="333" y="108" width="100" height="46" rx="6"/><text x="383" y="136" text-anchor="middle" font-size="12" font-weight="600">终审成片</text>
+    <rect class="chip me" x="447" y="108" width="100" height="46" rx="6"/><text x="497" y="136" text-anchor="middle" font-size="12" font-weight="600">定时发布</text>
+    <rect class="chip me" x="561" y="108" width="100" height="46" rx="6"/><text x="611" y="136" text-anchor="middle" font-size="12" font-weight="600">图文发布</text>
+    <rect class="chip me" x="675" y="108" width="100" height="46" rx="6"/><text x="725" y="136" text-anchor="middle" font-size="12" font-weight="600">复盘决策</text>
+
+    <!-- 制片 -->
+    <rect class="chip" x="219" y="174" width="100" height="46" rx="6"/><text x="269" y="202" text-anchor="middle" font-size="12">素材入库</text>
+    <rect class="chip" x="333" y="174" width="100" height="46" rx="6"/><text x="383" y="194" text-anchor="middle" font-size="12">AI 粗剪<tspan class="faint" x="383" y="210" font-size="10.5">字幕包装</tspan></text>
+
+    <!-- 投放 -->
+    <rect class="chip" x="447" y="240" width="100" height="46" rx="6"/><text x="497" y="268" text-anchor="middle" font-size="12">排程推送</text>
+    <rect class="chip" x="675" y="240" width="100" height="46" rx="6"/><text x="725" y="260" text-anchor="middle" font-size="12">周报生成<tspan class="faint" x="725" y="276" font-size="10.5">异常标红</tspan></text>
+
+    <!-- 渠道·私域 -->
+    <rect class="chip" x="447" y="306" width="100" height="46" rx="6"/><text x="497" y="334" text-anchor="middle" font-size="12">定时上线</text>
+    <rect class="chip" x="561" y="306" width="100" height="46" rx="6"/><text x="611" y="334" text-anchor="middle" font-size="12">钩子承接</text>
+    <rect class="chip" x="675" y="306" width="100" height="46" rx="6"/><text x="725" y="326" text-anchor="middle" font-size="12">体验成交<tspan class="faint" x="725" y="342" font-size="10.5">数据回收</tspan></text>
+
+    <!-- 管家横条 -->
+    <rect class="band" x="100" y="380" width="680" height="52" rx="8"/>
+    <text x="440" y="400" text-anchor="middle" font-size="12">每天 08:00 推送当日任务 + 材料 · 条件告警（月加微连续两周 &lt;30 / 待审积压 &gt;3 天 / 直播排期）</text>
+    <text class="faint" x="440" y="418" text-anchor="middle" font-size="11">决策永远在你手里：选题勾选 / 成片审 / 发布确认</text>
+
+    <!-- 交接箭头 -->
+    <path class="arr" d="M 155 88 L 155 104" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 205 131 L 215 131" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 269 154 L 269 170" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 383 174 L 383 158" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 497 154 L 497 236" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 497 286 L 497 302" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 547 329 L 557 329" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 661 329 L 671 329" marker-end="url(#ah2)"/>
+    <path class="arr" d="M 725 306 L 725 290" marker-end="url(#ah2)"/>
+
+    <!-- 回环 -->
+    <path class="arrd" d="M 725 240 C 720 28 240 18 162 54" marker-end="url(#ahd2)"/>
+    <text class="faint" x="430" y="30" text-anchor="middle" font-size="12">爆款归因 → 反哺下周选题</text>
+    <path class="arrd" d="M 611 306 C 520 250 340 258 275 230" marker-end="url(#ahd2)"/>
+    <text class="faint" x="440" y="252" text-anchor="middle" font-size="11">学员案例 → 下周素材</text>
+  </svg>
+  </div>
+  <p class="muted">两个衔接点：周四发布 → 私域承接（加微洪峰在发布后 24–48h，承接动作与排程绑定）；周六复盘 → 下周一雷达（爆款归因喂回编剧 Agent）。</p>
+</section>
 
 <!-- ============ 核心结论 ============ -->
 <section id="summary">
